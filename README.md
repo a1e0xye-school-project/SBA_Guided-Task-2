@@ -7,7 +7,11 @@
 
 </div>
 
-Gomoku SBA Task 1: https://github.com/a1e0xye-school-project/SBA_Guided-Task-1
+---
+
+#### (Gomoku) Task 1
+
+SBA_Guided-Task-1: https://github.com/a1e0xye-school-project/SBA_Guided-Task-1
 
 ---
 
