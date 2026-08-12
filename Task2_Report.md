@@ -55,8 +55,26 @@
 
 ## User Acceptance Test
 
+UAT was conducted with 5 testers who played this game (including PvP and PvM modes) and willing to fill a form to provide feedback. 
 
+Overall, the rating for this gomoku game is 7/10. 
 
+Their feedbacks are collected and concluded into following aspects:
+
+### Positive
+1. Colour-coded and clearly formatted game board make the game easy to use
+2. The program run normally without run-time error. And dependencies are easy to install by following intructions.
+3. Clean the terminal before printing the game board make the game experinece better.
+
+### Issues
+1. Player cannot choose to play again, the program exits after every game, and have to run the code again mannually.
+2. The performance of machine player in PvM mode is poor. It only focused at the last player's move.
+3. The game only show "invalid input' messsage without any reasons.
+
+### Suggestions
+1. Add "Play-again" feature, allowing player choose to start again after the end of one game. Score tracking can also be added to count total mark for multiple round.
+2. Make the error messages clearer by adding reasons.
+3. Refactor the machine logic to make it smarter or connect to AI services to make choices. Predict the players' move and evaluate the whole board. 
 
 ---
 
