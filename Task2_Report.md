@@ -76,7 +76,7 @@
 
 
 
-
+The source code of the programa is also avaiable in [Github](https://github.com/a1e0xye-school-project/SBA_Guided-Task-2/gomoku_v2_task2.py)
 
 ---
 
@@ -84,13 +84,12 @@
 
 #### **- END OF THIS REPORT -**
 
-
-
 Github Repo: 
-- Task 1: https://github.com/a1e0xye-school-project/SBA_Guided-Task-1
-- Task 2: https://github.com/a1e0xye-school-project/SBA_Guided-Task-2
 
-By Alex Ye (@a1e0xye)
+- Task 1: [https://github.com/a1e0xye-school-project/SBA_Guided-Task-1](https://github.com/a1e0xye-school-project/SBA_Guided-Task-1)
+- Task 2: [https://github.com/a1e0xye-school-project/SBA_Guided-Task-2](https://github.com/a1e0xye-school-project/SBA_Guided-Task-2)
+
+By Alex Ye
 
 2026/7-2026/8
 
