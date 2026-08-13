@@ -114,14 +114,87 @@ To test the program, we can simulate different game situations. We can get expec
 
 ## Unit Test
 
+Unit tests were performed on each subprogram (function) in the code. A complex test can be spilted into different small task by creating subprogram. Each subprogram have specific actions, thry can be called repeatedly without rewriting the code. 
 
+
+| Test ID | Subprogram | Description | Setup / Conditions | Expected Return | Actual |
+| --- | --- | --- | --- | --- | --- |
+| UT-1 | `check_win_v2` | Horizontal win (5 in a row) | Row index 6, columns 4–8 = `"●"` -> Execute `check_win_v2(6, 8, "●")` | True | Passed |
+| UT-2 | `check_win_v2` | Vertical win (5 in a column) | Column index 4, rows 2–6 = `"●"` -> Execute `check_win_v2(4, 4, "●")` | True | Passed |
+| UT-3 | `check_win_v2` | Diagonal win (Top-left > Bottom-right) | `Cell (2,2),(3,3),(4,4),(5,5),(6,6)` = `"●"` -> Execute `check_win_v2(4, 4, "●")` | True | Passed |
+| UT-4 | `check_win_v2` | Diagonal win (Bottom-left > Top-right) | `Cell (8,4),(7,5),(6,6),(5,7),(4,8)` = `"●"` -> Ececute `check_win_v2(6, 6, "●")` | True | Passed |
+| UT-5 | `check_win_v2` | Player 2 horizontal win | Row index 3, columns 9–13 = `"○"` -> Execute`check_win_v2(3, 11, "○")` | True | Passed |
+| UT-6 | `is_board_full` | Empty board | All cells are empty | False | Passed |
+| UT-7 | `is_board_full` | 1 cell occupied | 1 cell occupied, ramaining empty | False | Passed |
+| UT-8 | `is_board_full` | 1 cell empty | 1 cell is empty, remaining all occupied | False | Passed |
+| UT-9 | `is_board_full` | Full board | All 225 cells are occupied | True | Passed |
 
 
 ---
 
-## Sysytem Test
+## System Test
+
+In system test, we will run the game from start to finish instead a part of it. For each step, the expected behaviour can know from the code, and some of step are done in previous testing. 
+
+### ST-01: [PvP] Player 1 Wins (Horizontal)
 
 
+| Step | Test Step / Input | Expected | Actual | Pass/Fail |
+| --- | --- | --- | --- | --- |
+| 1 | Launch the game, then select mode `"1"` | No error message, PvP mode is enteted | PvP mode | Pass |
+| 2 | Player 1: `(8,5),(8,6),(8,7),(8,8)`; Player 2:`(2,2),(3,3),(4,4),(5,5)` | Piece placed; Two players input coordinate one by one. | As expected | Pass |
+| 3 | Player 1: `(8,9)` | As player 1 get 5 in a row first, player 1 should win the game | Board printed with "Player 1 wins!", game ended | Pass |
+
+
+### ST-02: [PvP] Player 1 Wins (Vertical)
+
+
+| Step | Test Step / Input | Expected | Actual | Pass/Fail |
+| --- | --- | --- | --- | --- |
+| 1 | Launch the game, then select mode `"1"` | No error message, PvP mode is enteted | PvP mode | Pass |
+| 2 | Player 1: `(3,7),(4,7),(5,7),(6,7),(7,7)`; Player 2 randommly place at other posit | Piece placed; Two players input coordinate one by one. | As expected | Pass |
+| 3 | Player 1 will get 5 in a row after placed at `(7,7)` | Player 1 should win the game | Board printed with "Player 1 wins!", game ended | Pass |
+
+
+### ST-03: [PvP] Player 2 Wins (Diagonal)
+
+
+| Step | Test Step / Input | Expected | Actual | Pass/Fail |
+| --- | --- | --- | --- | --- |
+| 1 | Launch the game, then select mode `"1"` | No error message, PvP mode is enteted | PvP mode | Pass |
+| 2 | Player 2: `(3,3),(4,4),(5,5),(6,6),(7,7)`; Player 1 place elsewhere | Piece placed; Two players input coordinate one by one. | As expected | Pass |
+| 3 | Player 2 complete 5 in diagonal after placed at `(7,7)` | Player 2 should win the game | Board printed with "Player 2 wins!", game ended | Pass |
+
+
+### ST-04: [PvP] Draw (Board Full)
+
+
+| Step | Test Step / Input | Expected | Actual | Pass/Fail |
+| --- | --- | --- | --- | --- |
+| 1 | Launch the game, then select mode `"1"` | No error message, PvP mode is enteted | PvP mode | Pass |
+| 2 | Fill whole board with no one get 5 in-a-row | Piece placed. And no board full message show during filling the whole board | As expected | Pass |
+| 3 | After the last piece filled the board | `is_board_full` should return board ful, and the game have no winner | "Board Full. No winner.", draw detected, round is end | Pass |
+
+
+### ST-05: [PvM] Human Player Wins
+
+
+| Step | Test Step / Input | Expected | Actual | Pass/Fail |
+| --- | --- | --- | --- | --- |
+| 1 | Launch the game, then select mode `"2"` | No error message, PvM mode is enteted | PvM mode | Pass |
+| 2 | Player 1 builds a 5 in horizontal while the machine defense | Machine player should 3×3 near the last human player's move, and follow machine logic to. | Machine responed and piece placed. | Pass |
+| 3 | Player 1 (human) places the 5th piece | Human player should win the game | Win detected: "Player 1 wins!", game ended. | Pass |
+
+
+### ST-06: [Input Validation] Invalid input
+
+| Step | Test Step / Input | Expected | Actual | Pass/Fail |
+| --- | --- | --- | --- | --- |
+| 1 | Mode: `""`, then `"3"`, then `"1"` | `"Invalid input"` should shown at first two entry, then enter PvP mode after "1" entered | As expected. User is asked to select again after invaild input. | Pass |
+| 2 | Enter empty value in row or column | `"You type nothing!!! Try again, please."` | Message shown | Pass |
+| 3 | Enter a letter instead of a number in row or column | `"Invalid input"` | Message shown | Pass |
+| 4 | Enter a number that exceed the board size in row or column | `"Invalid input"` | Message shown | Pass |
+| 5 | Enter same coordinate twice time | `"This cell is already occupied"` should show at the sencond time | Message shown | Pass |
 
 
 ---
