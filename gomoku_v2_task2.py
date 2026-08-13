@@ -137,7 +137,7 @@ while True:
         # Player input & Data validation
         while True:
             if turn == 1 and game_mode == "PvM":        # PvM mode - machine turn
-                # Machine turn logic (Modification #3 - centre-preferring fallback)
+                # Machine turn logic
                 cprint("Machine is thinking...", "yellow", attrs=["bold"])
 
                 last_player_row_index = selected_row - 1
@@ -195,7 +195,7 @@ while True:
                 break # Exit input loop, continue to Check win part
 
             else:       # PvP mode & PvM mode (Human player)
-                # Human turn logic (Modification #2 - clearer error messages)
+                # Human turn logic (Modified: clearer error messages)
                 while True:
                     selected_row = input(colored("Enter the row: ", "blue", attrs=["bold"]))
                     selected_column = input(colored("Enter the column: ", "blue", attrs=["bold"]))
