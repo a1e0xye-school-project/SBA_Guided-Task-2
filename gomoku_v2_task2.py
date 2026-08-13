@@ -19,6 +19,10 @@ player_1_indicator = "●"
 player_2_indicator = "○"
 num_row_column = 15 # Board Size
 
+# Board Size Validation - num_row_column cannot be less than 1
+if num_row_column < 1:
+    raise ValueError("Invalid board size: num_row_column must be at least 1.")
+
 board = []
 
 # Score tracking
