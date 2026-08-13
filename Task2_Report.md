@@ -201,33 +201,162 @@ In system test, we will run the game from start to finish instead a part of it. 
 
 ## User Acceptance Test
 
-UAT was conducted with 5 testers who played this game (including PvP and PvM modes) and willing to fill a form to provide feedback. 
+UAT was conducted with 5 testers who played this game (including PvP and PvM modes) and willing to fill a form to provide feedback.
 
-Overall, the rating for this gomoku game is 7/10. 
-
-Their feedbacks are collected and concluded into following aspects:
+Their feedbacks are collected and separated into following aspects:
 
 ### Positive
+
 1. Colour-coded and clearly formatted game board make the game easy to use
 2. The program run normally without run-time error. And dependencies are easy to install by following intructions.
 3. Clean the terminal before printing the game board make the game experinece better.
 
 ### Issues
+
 1. Player cannot choose to play again, the program exits after every game, and have to run the code again mannually.
 2. The performance of machine player in PvM mode is poor. It only focused at the last player's move.
 3. The game only show "invalid input' messsage without any reasons.
+4. The program will run normally even the game board size is entered a negative number
 
 ### Suggestions
+
 1. Add "Play-again" feature, allowing player choose to start again after the end of one game. Score tracking can also be added to count total mark for multiple round.
 2. Make the error messages clearer by adding reasons.
-3. Refactor the machine logic to make it smarter or connect to AI services to make choices. Predict the players' move and evaluate the whole board. 
+3. Refactor the machine logic to make it smarter or connect to AI services to make choices. Predict the players' move and evaluate the whole board.
+
 
 ---
 
+
 ## Debugging & Modifications
 
+After testing and collect UAT feedback, the program code is updated to fix bugs and add new feature to improve game experience.
 
+### Bug #1 - Invalid num_row_column
 
+The size of the game board is equal to the value of variable `num_row_column` in the code. During UAT, we found that if a negative number is entered, the game start with a very small game board, and no vaild coordinate. To avoid this situation, a validation check should be added right after the variable definition and before the board initialisation. If the game board size is entered smaller than 1, the program should return error and prompt the player to change the game board size.
+
+Updated code:
+
+```python
+num_row_column = 15 # Board Size
+
+# Board Size Validation - num_row_column cannot be less than 1
+if num_row_column < 1:
+    raise ValueError("Invalid board size: num_row_column must be at least 1.")
+```
+
+### Modification #1 - Play-again feature & Score tracking
+
+After UAT, some tester suggest add a play-again feature, so this modification is made. After updating the code, the game will no longer exits after one round is finished. With this feature, player can start a new round by confirming "y" without running the code again manually.
+
+Considering that players may use multiple rounds to determine the winner，a score tracking feature is added. The program will record the score of each player, if one of them win a round, the score will add 1, and no mark for anyone if draw.
+
+In task 1, the main loop ended the whole program by calling `break` after one player win or the game board is full, this limit the program can only play one round. After updating, the main loop is restructured to use a flag `round_ended` instead of `break`.
+
+```python
+# Main
+while True:
+    # Start a new round
+    board.clear()
+    board_init()
+    round_ended = False
+
+    while not round_ended:
+        ......
+        if not round_ended:
+            turn = 1 - turn # Player round switch
+
+    # End of round - show the total score
+    cprint(f"Score - Player 1: {score_player_1} | Player 2: {score_player_2} | Draw: {score_draw}", "cyan", attrs=["bold"])
+```
+
+For the score tracking, three score counters varibles is added.
+
+```python
+# Score tracking
+score_player_1 = 0
+score_player_2 = 0
+score_draw = 0
+```
+
+When win is detected, the winner player's scrore will add 1. For example, when the program detected Player 1 win:
+
+```python
+if check_win_v2(board, selected_row - 1, selected_column - 1, player_1_indicator):
+    print("\033c", end="")
+    board_print(board)
+    cprint("Player 1 wins!", "green", attrs=["bold"])
+    score_player_1 += 1      # Add 1 mark for player 1
+    round_ended = True
+```
+
+After each round ended, the player will be asked whether to play a new round. If the player confirm to start a new round, the outer loop continues and the board is cleared. If the player choose to end the whole game (replying "n"), the final score for both player will be printed and the program exits.
+
+```python
+# Play-again
+while True:
+    play_again = input("Play again? (y/n): ").strip().lower()  # Remove whitespace and convert to lowercase letter
+    if play_again == "y":
+        break    # Start a new round (outer loop continues)
+    elif play_again == "n":
+        cprint(f"Thanks for playing! Final score - Player 1: {score_player_1} | Player 2: {score_player_2} | Draw: {score_draw}", "cyan", attrs=["bold"])
+        exit() # END OF WHOLE PROGRAM
+    else:
+        cprint("Invalid input: please enter 'y' to play again or 'n' to quit.", "red", attrs=["bold"])
+```
+
+### Modification #2 - Error messages with reasons
+
+In task 1, invalid inputs was rejected with `"Invalid input"` message (For empty value: `"You type nothing!!! Try again, please."`), which does not tell the player why the input was rejected.
+
+All error messages is now include the reason, the player knows what exactly they entered wrong.
+
+The message at mode selection now tell the player the valid options that they supposed to input:
+
+```python
+else:
+    cprint("Invalid input: please enter 1 (PvP) or 2 (PvM).", "red", attrs=["bold"])
+```
+
+For coordinate input, the validation is splited into steps, so that each case report its own specific reason. The specifc invaild data (row or column) is shown and the vaild range also will shown.
+
+```python
+while True:
+    selected_row = input(colored("Enter the row: ", "blue", attrs=["bold"]))
+    selected_column = input(colored("Enter the column: ", "blue", attrs=["bold"]))
+    if selected_row == '' or selected_column == '':   # Input nothing
+        cprint("You type nothing!!! Row and column cannot be empty.", "red", attrs=["bold"])
+        continue    # Jump to next loop: Input again
+    selected_row = selected_row.strip() # Remove the whitespace
+    selected_column = selected_column.strip()
+    if not (selected_row.isdigit() and selected_column.isdigit()):  # Check the strings only contain digit number
+        if not selected_row.isdigit() and not selected_column.isdigit():
+            cprint(f"Invalid input: both row '{selected_row}' and column '{selected_column}' are not numbers (1-{num_row_column}).", "red", attrs=["bold"])
+        elif not selected_row.isdigit():
+            cprint(f"Invalid input: row '{selected_row}' is not a number (1-{num_row_column}).", "red", attrs=["bold"])
+        else:
+            cprint(f"Invalid input: column '{selected_column}' is not a number (1-{num_row_column}).", "red", attrs=["bold"])
+        continue
+    selected_row = int(selected_row)
+    selected_column = int(selected_column)
+    break
+```
+
+The out-of-range and occupied-cell messages also point out exactly which coordinate is invaild:
+
+```python
+if selected_row > 0 and selected_row <= num_row_column and selected_column > 0 and selected_column <= num_row_column:  # Data validation - within the board size
+    if board[selected_row - 1][selected_column - 1] == empty_cell_indicator:   # Data validation - EMPTY CELL
+        ......
+    else:
+        cprint(f"This cell ({selected_row},{selected_column}) is already occupied. Please choose an empty cell.", "red", attrs=["bold"])
+else:
+    if selected_row < 1 or selected_row > num_row_column:
+        cprint(f"Invalid input: row {selected_row} is out of range (1-{num_row_column}).", "red", attrs=["bold"])
+    else:
+        cprint(f"Invalid input: column {selected_column} is out of range (1-{num_row_column}).", "red", attrs=["bold"])
+```
 
 ---
 
