@@ -39,22 +39,6 @@ def board_init():
         for r in range(num_row_column):
             board[i].append(empty_cell_indicator)
 
-# Mode Selection
-print("Please select your preferred mode:")
-print(" 1. Player vs Player (PvP) \n 2. Player vs Machine (PvM)")
-while True:
-    choice = input("Select mode (1/2): ")
-    if choice == "1":
-        game_mode = "PvP"
-        break
-    elif choice == "2":
-        game_mode = "PvM"
-        break
-    else:
-        cprint("Invalid input: please enter 1 (PvP) or 2 (PvM).", "red", attrs=["bold"])
-cprint(f"You have selected {game_mode} mode", "green", attrs=["bold"])
-time.sleep(1.5)
-
 ## Board Print
 def board_print(board):
     headers = [" "]
@@ -115,12 +99,27 @@ def is_board_full(board):
             return False
     return True
 
+# Mode Selection
+print("Please select your preferred mode:")
+print(" 1. Player vs Player (PvP) \n 2. Player vs Machine (PvM)")
+while True:
+    choice = input("Select mode (1/2): ")
+    if choice == "1":
+        game_mode = "PvP"
+        break
+    elif choice == "2":
+        game_mode = "PvM"
+        break
+    else:
+        cprint("Invalid input: please enter 1 (PvP) or 2 (PvM).", "red", attrs=["bold"])
+cprint(f"You have selected {game_mode} mode", "green", attrs=["bold"])
+time.sleep(1.5)
+
 # Main
 while True:
     # Start a new round
     board.clear()
     board_init()
-    turn = 0
     round_ended = False
 
     while not round_ended:
