@@ -389,8 +389,7 @@ This logic is simple and fast, but it limit the mchine will only search around t
 
 ## Conclusion
 
-
-
+In this report, the Gomoku game was tested and evaluated by different datas. Based on the code, the program design was analysed for its streangths and weakness. A set of tests (including input validation, unit tests, system tests and user acceptance test) was design and carried out, and most of the tests passed as expected. Based on the testing result and UAT feedbacks, bug was fixed, and improved by adding new feature and refactoring. For further development, some algorithm optimisation ideas was discussed. Although there is still room for improvement, the program now run stably and as expected. Compared to task 1, the optimized program in task 2 imroved player experince.
 
 ---
 
