@@ -248,7 +248,7 @@ if num_row_column < 1:
 
 ### Modification #1 - Play-again feature & Score tracking
 
-![feat_play-again_score-tracking](/Task2_Report/img/play-again_score-tracking.jpeg)
+![feat_play-again_score-tracking](https://filebox.aye.moe/share/select?code=B85Q5)
 
 After UAT, some tester suggest add a play-again feature, so this modification is made. After updating the code, the game will no longer exits after one round is finished. With this feature, player can start a new round by confirming "y" without running the code again manually.
 
