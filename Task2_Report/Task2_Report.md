@@ -680,15 +680,16 @@ while True:
 
 <div align="center">
 
-#### **- END OF THIS REPORT -**
+### **- END OF THIS REPORT -**
 
-Github Repo: 
+**Task 1** |  [Github: a1e0xye-school-project/SBA_Guided-Task-1](https://github.com/a1e0xye-school-project/SBA_Guided-Task-1)
 
-- Task 1: [https://github.com/a1e0xye-school-project/SBA_Guided-Task-1](https://github.com/a1e0xye-school-project/SBA_Guided-Task-1)
-- Task 2: [https://github.com/a1e0xye-school-project/SBA_Guided-Task-2](https://github.com/a1e0xye-school-project/SBA_Guided-Task-2)
+**Task 2** |  [Github: a1e0xye-school-project/SBA_Guided-Task-2](https://github.com/a1e0xye-school-project/SBA_Guided-Task-2)
 
 By Alex Ye
 
 2026/7-2026/8
+
+**Thank you!**
 
 </div>
