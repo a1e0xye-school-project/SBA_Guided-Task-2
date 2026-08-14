@@ -10,7 +10,7 @@
 
 ## Introduction
 
-
+This report documents task2 testing and evaluation of the Gomoku game. The program was first developed in task 1 as a terminal-based game. In this task 2, different test will be conducted to see whether the program run as expected, and also collect feedback from diffrent users. Then, we will fix bugs in this task if found, and new features may be added to improve game experience based on feedback and testing.
 
 ---
 
