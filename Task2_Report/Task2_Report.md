@@ -243,7 +243,7 @@ num_row_column = 15 # Board Size
 
 # Board Size Validation - num_row_column cannot be less than 1
 if num_row_column < 1:
-    raise ValueError("Invalid board size: num_row_column must be at least 1.")
+    raise ValueError("Invalid board size: num_row_column must be an integer and at least 1.")
 ```
 
 ### Modification #1 - Play-again feature & Score tracking
@@ -298,7 +298,7 @@ After each round ended, the player will be asked whether to play a new round. If
 ```python
 # Play-again
 while True:
-    play_again = input("Play again? (y/n): ").strip().lower()  # Remove whitespace and convert to lowercase letter
+    play_again = input("Start a new round? (y/n): ").strip().lower()  # Remove whitespace and convert to lowercase letter
     if play_again == "y":
         break    # Start a new round (outer loop continues)
     elif play_again == "n":
@@ -423,7 +423,7 @@ num_row_column = 15 # Board Size
 
 # Board Size Validation - num_row_column cannot be less than 1
 if num_row_column < 1:
-    raise ValueError("Invalid board size: num_row_column must be at least 1.")
+    raise ValueError("Invalid board size: num_row_column must be an integer and at least 1.")
 
 board = []
 
@@ -665,7 +665,7 @@ while True:
 
     # Play-again
     while True:
-        play_again = input("Play again? (y/n): ").strip().lower()  # Remove whitespace and convert to lowercase letter
+        play_again = input("Start a new round? (y/n): ").strip().lower()  # Remove whitespace and convert to lowercase letter
         if play_again == "y":
             break    # Start a new round (outer loop continues)
         elif play_again == "n":
@@ -673,6 +673,7 @@ while True:
             exit() # END OF WHOLE PROGRAM
         else:
             cprint("Invalid input: please enter 'y' to play again or 'n' to quit.", "red", attrs=["bold"])
+
 ```
 
 
