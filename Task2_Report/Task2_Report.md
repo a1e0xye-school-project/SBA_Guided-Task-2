@@ -33,16 +33,16 @@ This report documents task 2 testing and evaluation of the Gomoku game. The prog
 
 ## Test Data and Test Cases
 
-> Test Enviromenrt: MacOS Python 3.x 
+> Test Environment: MacOS Python 3.x 
 
 ### Input Validation
 
-Input validation is a improtant part as player interact with game through terminal input and output. If the player accidentally submitted invalid data to the program, the program may not able to handle it (including empty value, out-or-range value, wrong data type, etc.), resulting the game stop unexpectedly and user need to restart it. To aviod that happened, we need input validation to detect invaild data, and let the player entered again. 
+Input validation is a important part as player interact with game through terminal input and output. If the player accidentally submitted invalid data to the program, the program may not able to handle it (including empty value, out-of-range value, wrong data type, etc.), resulting the game stop unexpectedly and user need to restart it. To avoid that happened, we need input validation to detect invalid data, and let the player entered again. 
 
 The program accept input in **two places**, including:
 
 1. **Game Mode selection** – User have to select game mode before starting the game by typing `"1"` (PvP) or `"2"` (PvM).
-2. **Coordinate input** – Players need to input the coordiante of the cell to place their piece by entering row number and column number.
+2. **Coordinate input** – Players need to input the coordinate of the cell to place their piece by entering row number and column number.
 
 Each test uses differnt tyoe of value, including valid data that we expected player to input, empty value, not within the game board size range and occupied cell. Expect valid data that the program can process further, other data should be labeled invaild and reject to ask for input again.
 
@@ -55,7 +55,7 @@ At the start of this game, the program will ask player which mode they want play
 | --- | --- | --- | --- | --- |
 | IV-M-1 | `"1"` | Valid | Print "You have selected PvP mode" and PvP mode entered | Passed (As expected) |
 | IV-M-2 | `"2"` | Valid | Print "You have selected PvM mode", and PvM mode entered | Passed (As expected) |
-| IV-M-3 | `"3"` | Invaild | Print `"Invalid input"` , and then ask to input again | Passed (As expected) |
+| IV-M-3 | `"3"` | Invalid | Print `"Invalid input"` , and then ask to input again | Passed (As expected) |
 | IV-M-4 | `"0"` | Invalid | Print `"Invalid input"`, and then ask to input again | Passed (As expected) |
 | IV-M-5 | `"abc"` | Unmatched data type | Print `"Invalid input"` , and then ask to input again | Passed (As expected) |
 | IV-M-6 | `""` (empty value) | Empty | Print `"Invalid input"`, and then ask to input again | Passed (As expected) |
