@@ -273,7 +273,7 @@ while True:
     cprint(f"Score - Player 1: {score_player_1} | Player 2: {score_player_2} | Draw: {score_draw}", "cyan", attrs=["bold"])
 ```
 
-For the score tracking, three score counters varibles is added.
+For the score tracking, three score counters variables is added.
 
 ```python
 # Score tracking
@@ -282,7 +282,7 @@ score_player_2 = 0
 score_draw = 0
 ```
 
-When win is detected, the winner player's scrore will add 1. For example, when the program detected Player 1 win:
+When win is detected, the winner player's score will add 1. For example, when the program detected Player 1 win:
 
 ```python
 if check_win_v2(board, selected_row - 1, selected_column - 1, player_1_indicator):
@@ -321,7 +321,7 @@ else:
     cprint("Invalid input: please enter 1 (PvP) or 2 (PvM).", "red", attrs=["bold"])
 ```
 
-For coordinate input, the validation is splited into steps, so that each case report its own specific reason. The specifc invaild data (row or column) is shown and the vaild range also will shown.
+For coordinate input, the validation is split into steps, so that each case report its own specific reason. The specific invalid data (row or column) is shown and the valid range also will shown.
 
 ```python
 while True:
@@ -378,7 +378,7 @@ This logic is simple and fast, but it limits the machine will only search around
 
 - **Board size validation** - A data validation is added to reject invalid board size (e.g. a negative number) by rising error to let player change it, instead of continuing the game with a broken board.
 - **Play-again loop and score tracking** - The main loop is restructured (Mentioned in Modif#1) to support multiple rounds and record the mark.
-- **Clearer input validation** - The data validation logic in coordiante input is conserved, but each error message now tells the player what exactly they entered wrong, so invalid input is handled more clearly.
+- **Clearer input validation** - The data validation logic in coordinate input is conserved, but each error message now tells the player what exactly they entered wrong, so invalid input is handled more clearly.
 
 ### Possible further improvements
 
