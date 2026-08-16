@@ -397,7 +397,7 @@ In this report, the Gomoku game was tested and evaluated by different data. Base
 
 ## Program Full Code
 
-The source code of the program is also available in [Github](https://github.com/a1e0xye-school-project/SBA_Guided-Task-2/gomoku_v2_task2.py)
+The source code of the program is also available in [Github](https://github.com/a1e0xye-school-project/SBA_Guided-Task-2/blob/main/gomoku_v2_task2.py)
 
 ```python
 # Gomoku Game 
