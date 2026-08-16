@@ -368,11 +368,11 @@ else:
 
 In PvM mode, the machine player uses a simple decision logic. It first collects all empty cells within the 3×3 area around the human player's last move, then decides the move in this order:
 
-1. **Defend** - The mcachine first search all empty cell nearby the human player's last move. If the human player can get 5-in-a-row by placing on one of these cells, the machine will place its piece to that cell to block human player.
+1. **Defend** - The machine first search all empty cell nearby the human player's last move. If the human player can get 5-in-a-row by placing on one of these cells, the machine will place its piece to that cell to block human player.
 2. **Attack** - If the machine player can complete its own 5-in-a-row, the machine will place its piece at that cell.
-3. **Random** - If neither defend and attack applies, the machine player will select a empty cell randommly nearby ,or a random cell on the game board if there is no empty cell nearby.
+3. **Random** - If neither defend and attack applies, the machine player will select an empty cell randomly nearby, or a random cell on the game board if there is no empty cell nearby.
 
-This logic is simple and fast, but it limit the mchine will only search around the last move and cannot predict next move, so the human player can beat the machine easily. 
+This logic is simple and fast, but it limits the machine will only search around the last move and cannot predict next move, so the human player can beat the machine easily. 
 
 ### Improvements made
 
@@ -382,10 +382,10 @@ This logic is simple and fast, but it limit the mchine will only search around t
 
 ### Possible further improvements
 
-- **Reduce win checking time** - The subprogram `check_win_v2` can skip directions where 5 in a row is impossible (e.g. the piece is at the eage of the board).
-- **Score the whole board** - (For PvM mode) Instead of only searching the cells near the last move or making random select, the machine can evaluate empty cells on the board and give each one a score based on how many piece the cell can connect in a row (maybe can for both the human and the machine?). The cell with the highest score should be chosen after evaluating. This method may make the machine smarter, but the machine will condifer the whole board instead nearby, this may make the code complex and cost more resources. 
+- **Reduce win checking time** - The subprogram `check_win_v2` can skip directions where 5 in a row is impossible (e.g. the piece is at the edge of the board).
+- **Score the whole board** - (For PvM mode) Instead of only searching the cells near the last move or making random select, the machine can evaluate empty cells on the board and give each one a score based on how many piece the cell can connect in a row (maybe can for both the human and the machine?). The cell with the highest score should be chosen after evaluating. This method may make the machine smarter, but the machine will consider the whole board instead nearby, this may make the code complex and cost more resources. 
 
-- **Connect to external public AI service** - Instead of following a fixed logic, the program can send the current game board to an external AI service and let the AI to select. To integrate the AI, we might consider works with both OpenAI- and Anthropic-compatible APIs, the base URL and key should config by the user. But when the program have no internet connection or the API unavaiable, the program should return to follow the fixed logic that we wrote in the code. 
+- **Connect to external public AI service** - Instead of following a fixed logic, the program can send the current game board to an external AI service and let the AI to select. To integrate the AI, we might consider working with both OpenAI- and Anthropic-compatible APIs, the base URL and key should be configured by the user. But when the program has no internet connection or the API unavailable, the program should return to follow the fixed logic that we wrote in the code. 
 
 ---
 
