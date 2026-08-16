@@ -19,7 +19,7 @@ This report documents task 2 testing and evaluation of the Gomoku game. The prog
 ### Strengths
 
 1. Modular function design - Different logic is separated into functions, like printing the game board (board_print), win check (check_win_v2) etc. By this modular design, each function is reusable, making the code clearer and easier to maintain, also testing.
-2. Comprehensive input validation - The program will first check whether the player's input is empty or non-numeric. Next, the program will check whether the player has selected an occupied cell or selected out-of-range coordinates. The player will be asked to input again until the data is valid after validation.
+2. Comprehensive input validation - The program will first check whether the player's input is empty or non-numeric (For coordinate input). Next, the program will check whether the player has selected an occupied cell or selected out-of-range coordinates. The player will be asked to input again until the data is valid after validation.
 3. Support PvP and PvM mode - Player can choose their preferred game mode at the start, either PvM (Player vs Machine) or PvP (Player vs Player). If PvM mode is chosen, the machine player will prevent human player from winning and trying to win itself, and finally a random fallback. If PvP mode is chosen, the program will show the current player, and the two players will be asked to choose a cell one by one until one of them wins or the board is full.
 4. Clear visual feedback - Terminal output is colour-coded (`termcolor`) and the game board is formatted (`tabulate` with `rounded_grid` style), both of them improve the user experience.
 
@@ -67,7 +67,7 @@ At the start of this game, the program will ask player which mode they want play
 The inputted coordinate will be validate by three steps:
 
 1. **Empty check** – If the player entered nothing (`""`) , the program will show `"You type nothing!!! Try again, please."`. The player will be asked to entered again if this check is not passed.
-2. **Numeric check** – As coordinates are represented in row number and column nunber, both values must pass `.isdigit()` to ensure its data type is number, otherwise `"Invalid input"` will be shown and ask the player to enter again.
+2. **Numeric check** – As coordinates are represented in (row, column), the player have to inuut row and column nmber one by one. Both values must pass `.isdigit()` to ensure its data type is number, otherwise `"Invalid input"` will be shown and ask the player to enter again.
 3. **Range Check & occupancy check** – The entered row number and column number should be between 1 to the actual game board size(which is equal to `num_row_column`), and the selected cell should be empty.
 
 All three check need to passed to continue placing the piece into the game board.
@@ -234,7 +234,7 @@ After testing and collect UAT feedback, the program code is updated to fix bugs 
 
 ### Bug #1 - Invalid num_row_column
 
-The size of the game board is equal to the value of variable `num_row_column` in the code. During UAT, we found that if a negative number is entered, the game start with a very small game board, and no vaild coordinate. To avoid this situation, a validation check should be added right after the variable definition and before the board initialisation. If the game board size is entered smaller than 1, the program should return error and prompt the player to change the game board size.
+The size of the game board is equal to the value of variable `num_row_column` in the code. During UAT, we found that if a negative number is entered, the game start with a very small game board, and no vaild coordinate. To avoid this situation, a validation check should be added right after the variable definition and before the board initialisation. If the game board size is entered smaller than 1, the program should return error and prompt the player to change the game board size to a valid one.
 
 Updated code:
 
