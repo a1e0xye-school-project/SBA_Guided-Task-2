@@ -215,7 +215,7 @@ Their feedbacks are collected and separated into following aspects:
 
 1. Player cannot choose to play again, the program exits after every game, and have to run the code again mannually.
 2. The performance of machine player in PvM mode is poor. It only focused at the last player's move.
-3. The game only show "invalid input' messsage without any reasons.
+3. The game only show "invalid input' message without any reasons.
 4. The program will run normally even the game board size is entered a negative number
 
 ### Suggestions
